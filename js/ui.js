@@ -1,4 +1,0 @@
-
-/**
- * individual js codes
- */
