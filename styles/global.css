@@ -58,14 +58,15 @@ textarea,
 select {
     font: inherit;
 }
-
 #content {
     width: 100%;
     max-width: 1440px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
+    gap: 30px;
     box-sizing: border-box;
 }
 

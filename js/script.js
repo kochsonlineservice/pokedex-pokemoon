@@ -12,7 +12,7 @@ function renderHeader() {
 init();
 
 async function loadPokemon() {
-  let url = "https://pokeapi.co/api/v2/pokemon?limit=1";
+  let url = "https://pokeapi.co/api/v2/pokemon?limit=6";
 
   let response = await fetch(url);
   let responseAsJson = await response.json();
@@ -32,7 +32,12 @@ async function loadPokemon() {
     pokemonDetails.sprites.other["official-artwork"].front_default;
     let pokemonId = pokemonDetails.id;
     let pokemonTypes = pokemonDetails.types[0].type.name;
-    let pokemonTypeTwo = pokemonDetails.types[1].type.name;
+
+    let pokemonTypeTwo = "";
+    if (pokemonDetails.types.length > 1) {
+        pokemonTypeTwo = " / " + pokemonDetails.types[1].type.name;
+    }
+  
 
     
 

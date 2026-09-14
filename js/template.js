@@ -6,7 +6,7 @@ export function getHeaderTemplate() {
 
                 <img
                     class="header-monster"
-                    src="./assets/icons/poke-header.svg"
+                    src="./assets/icons/header-icon.svg"
                     alt=""
                 >
 
@@ -18,7 +18,7 @@ export function getHeaderTemplate() {
 
                 <img
                     class="header-monster"
-                    src="./assets/icons/poke-header.svg"
+                    src="./assets/icons/header-icon.svg"
                     alt=""
                 >
 
@@ -56,7 +56,7 @@ export function getPokemonCardTemplate(
                 >
 
                 <span class="pokemon-type">
-                    Type: ${pokemonTypes} / ${pokemonTypeTwo}
+                    Type: ${pokemonTypes}  ${pokemonTypeTwo}
                 </span>
 
             </button>
