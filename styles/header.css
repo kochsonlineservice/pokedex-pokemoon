@@ -2,8 +2,7 @@
     width: 100%;
     padding: 24px 20px;
     box-sizing: border-box;
-
-    background-color: antiquewhite
+ background: linear-gradient(to right, #f5e6d3, #f8c8c8);
 ;
 }
 
