@@ -1,6 +1,6 @@
- export function getHeaderTemplate() {
+export function getHeaderTemplate() {
   return `
-   <div class="header-content">
+        <div class="header-content">
             <header>
                 <h1>Pokédex</h1>
 
@@ -30,6 +30,38 @@
                 </button>
             </header>
         </div>
-    
     `;
+}
+export function getPokemonCardTemplate(
+  pokemonName,
+  pokemonImage,
+  pokemonId,
+  pokemonTypes,
+  pokemonTypeTwo,
+) {
+  
+ let html = `
+        <div class="pokemon-card ${pokemonTypes}">
+            <button class="btn-card" data-id="card">
+
+                <span class="pokemon-name">
+                    #${pokemonId} ${pokemonName}
+                </span>
+
+                <img
+                    class="img-card"
+                    data-id="card-image"
+                    src="${pokemonImage}"
+                    alt=""
+                >
+
+                <span class="pokemon-type">
+                    Type: ${pokemonTypes} / ${pokemonTypeTwo}
+                </span>
+
+            </button>
+        </div>
+    `;
+
+  return html;
 }
