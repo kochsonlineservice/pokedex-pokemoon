@@ -92,3 +92,23 @@ header h1 {
         max-width: none;
     }
 }
+
+
+
+.footer {
+    width: 100%;
+    min-height: 150px;
+    padding: 25px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #bb1c73, #6abcb0);
+}
+
+.footer a {
+    color: #000;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

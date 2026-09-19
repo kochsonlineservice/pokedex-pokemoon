@@ -15,10 +15,16 @@
      cursor: pointer;
 }
 
+#content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
 .pokemon-card:hover {
     transform: scale(1.05);
-   
 }
+
 
 .pokemon-name {
     display: block;
@@ -51,9 +57,26 @@
 }
 
 .fire {
-    background-color: #F08030;
+    background-color: #d82424;
+}
+.water {
+    background-color: #6890F0;
 }
 
-.flying {
-    background-color: #A890F0;
+
+
+@media (max-width: 1000px) {
+    #content {
+        grid-template-columns: repeat(2, 1fr);
+          justify-items: center;
+    }
+}
+
+
+
+@media (max-width: 700px) {
+    #content {
+        grid-template-columns: repeat(1, 1fr);
+          justify-items: center;
+    }
 }

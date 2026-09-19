@@ -11,10 +11,11 @@ export function getHeaderTemplate() {
                 >
 
                 <input
-                    type="text"
-                    id="search-input"
-                    placeholder="Search Pokémon"
-                >
+    type="text"
+    id="search-input"
+    data-id="search-input"
+    placeholder="Search Pokémon"
+>
 
                 <img
                     class="header-monster"
@@ -33,16 +34,16 @@ export function getHeaderTemplate() {
     `;
 }
 export function getPokemonCardTemplate(
+  index,
   pokemonName,
   pokemonImage,
   pokemonId,
   pokemonTypes,
   pokemonTypeTwo,
 ) {
-  
- let html = `
+  let html = `
         <div class="pokemon-card ${pokemonTypes}">
-            <button class="btn-card" data-id="card">
+        <button class="btn-card" data-id="card" onclick="openDialog(${index})">
 
                 <span class="pokemon-name">
                     #${pokemonId} ${pokemonName}
@@ -64,4 +65,17 @@ export function getPokemonCardTemplate(
     `;
 
   return html;
+}
+
+export function getFooterTemplate() {
+  return `
+        <footer class="footer">
+            <a href="#">Impressum</a>
+            <br>
+
+             <br>
+
+               <span id="year" class="footer-span">@ Developer Akademie 2026</span>
+        </footer>
+    `;
 }

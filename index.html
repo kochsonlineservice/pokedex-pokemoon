@@ -1,88 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <!-- Grundlegende Einstellungen -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO -->
     <title>Pokedex</title>
 
     <meta
-        name="description"
-        content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
-    >
+      name="description"
+      content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
+    />
 
     <meta
-        name="keywords"
-        content="Pokémon, Pokedex, Pokemon Informationen, Pokémon Suche"
-    >
+      name="keywords"
+      content="Pokémon, Pokedex, Pokemon Informationen, Pokémon Suche"
+    />
 
-    <meta name="author" content="Ralph Koch">
-    <meta name="robots" content="index, follow">
+    <meta name="author" content="Ralph Koch" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://deine-domain.de/">
+    <link rel="canonical" href="https://deine-domain.de/" />
 
     <!-- Favicon -->
-    <link
-        rel="icon"
-        type="image/png"
-        href="./assets/icons/favicon.png"
-    >
+    <link rel="icon" type="image/png" href="./assets/icons/favicon.png" />
 
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Pokedex">
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pokedex" />
     <meta
-        property="og:description"
-        content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
-    >
-    <meta property="og:url" content="https://deine-domain.de/">
+      property="og:description"
+      content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
+    />
+    <meta property="og:url" content="https://deine-domain.de/" />
     <meta
-        property="og:image"
-        content="https://deine-domain.de/assets/images/social-preview.jpg"
-    >
-    <meta property="og:site_name" content="Pokedex">
+      property="og:image"
+      content="https://deine-domain.de/assets/images/social-preview.jpg"
+    />
+    <meta property="og:site_name" content="Pokedex" />
 
     <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Pokedex">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Pokedex" />
     <meta
-        name="twitter:description"
-        content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
-    >
+      name="twitter:description"
+      content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
+    />
     <meta
-        name="twitter:image"
-        content="https://deine-domain.de/assets/images/social-preview.jpg"
-    >
+      name="twitter:image"
+      content="https://deine-domain.de/assets/images/social-preview.jpg"
+    />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-</head>
-
-<body >
-    
-
+  <body>
     <div id="header"></div>
 
+    <main id="content" data-id="content"></main>
 
+    <dialog id="dialog">
+      <img id="grossesBild" class="large-img" alt="Vergrößertes Bild" />
+      <button class="btn_close" aria-label="Dialog schließen">✕</button>
 
-   <main id="content" data-id="content"></main>
+      <button
+                class="btn_left"
+              
+                aria-label="Vorheriges Bild"
+              >
+                <svg viewBox="0 0 24 24" width="30" height="30">
+                  <path
+                    d="M15 6 L9 12 L15 18"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+      <p class="bildText" id="bildText"></p>
+      <p id="pokemonType"></p>
+      <p id="pokemonHp"></p>
+      <p id="pokemonAttack"></p>
+      <p id="pokemonDefense"></p>
 
+      <button
+                class="btn_right"
+               
+                aria-label="Nächstes Bild"
+              >
+                <svg viewBox="0 0 24 24" width="30" height="30">
+                  <path
+                    d="M9 6 L15 12 L9 18"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+    </dialog>
 
-   
+    <div id="footer"></div>
 
-
-
-
-
-
-
-
-    
- <script type="module" src="./js/script.js"></script>
-    
-</body>
+    <script type="module" src="./js/script.js"></script>
+  </body>
 </html>
