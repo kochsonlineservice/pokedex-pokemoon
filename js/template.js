@@ -1,8 +1,11 @@
 export function getHeaderTemplate() {
-  return `
+    // Create the header
+    return `
         <div class="header-content">
             <header>
-                <h1>Pokédex</h1>
+                <a href="./index.html">
+                    <h1>Pokédex</h1>
+                </a>
 
                 <img
                     class="header-monster"
@@ -11,11 +14,11 @@ export function getHeaderTemplate() {
                 >
 
                 <input
-    type="text"
-    id="search-input"
-    data-id="search-input"
-    placeholder="Search Pokémon"
->
+                    type="text"
+                    id="search-input"
+                    data-id="search-input"
+                    placeholder="Search Pokémon"
+                >
 
                 <img
                     class="header-monster"
@@ -33,18 +36,24 @@ export function getHeaderTemplate() {
         </div>
     `;
 }
-export function getPokemonCardTemplate(
-  index,
-  pokemonName,
-  pokemonImage,
-  pokemonId,
-  pokemonTypes,
-  pokemonTypeTwo,
-) {
-  let html = `
-        <div class="pokemon-card ${pokemonTypes}">
-        <button class="btn-card" data-id="card" onclick="openDialog(${index})">
 
+
+export function getPokemonCardTemplate(
+    index,
+    pokemonName,
+    pokemonImage,
+    pokemonId,
+    pokemonTypes,
+    pokemonTypeTwo
+) {
+    // Create the Pokémon card
+    let html = `
+        <div class="pokemon-card ${pokemonTypes}">
+            <button
+                class="btn-card"
+                data-id="card"
+                onclick="openDialog(${index})"
+            >
                 <span class="pokemon-name">
                     #${pokemonId} ${pokemonName}
                 </span>
@@ -57,25 +66,28 @@ export function getPokemonCardTemplate(
                 >
 
                 <span class="pokemon-type">
-                    Type: ${pokemonTypes}  ${pokemonTypeTwo}
+                    Type: ${pokemonTypes} ${pokemonTypeTwo}
                 </span>
-
             </button>
         </div>
     `;
 
-  return html;
+    return html;
 }
 
+
 export function getFooterTemplate() {
-  return `
+    // Create the footer
+    return `
         <footer class="footer">
             <a href="#">Impressum</a>
             <br>
 
-             <br>
+            <br>
 
-               <span id="year" class="footer-span">@ Developer Akademie 2026</span>
+            <span id="year" class="footer-span">
+                @ Developer Akademie 2026
+            </span>
         </footer>
     `;
 }
