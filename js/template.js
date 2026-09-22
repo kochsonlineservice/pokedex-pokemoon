@@ -1,6 +1,6 @@
 export function getHeaderTemplate() {
-    // Create the header
-    return `
+  // Create the header
+  return `
         <div class="header-content">
             <header>
                 <a href="./index.html">
@@ -27,27 +27,27 @@ export function getHeaderTemplate() {
                 >
 
                 <button
-                    id="search-button"
-                    type="button"
-                >
-                    Search
+                        id="search-button"
+                        data-id="search-button"
+                        type="button"
+                            >
+                        Search
                 </button>
             </header>
         </div>
     `;
 }
 
-
 export function getPokemonCardTemplate(
-    index,
-    pokemonName,
-    pokemonImage,
-    pokemonId,
-    pokemonTypes,
-    pokemonTypeTwo
+  index,
+  pokemonName,
+  pokemonImage,
+  pokemonId,
+  pokemonTypes,
+  pokemonTypeTwo,
 ) {
-    // Create the Pokémon card
-    let html = `
+  // Create the Pokémon card
+  let html = `
         <div class="pokemon-card ${pokemonTypes}">
             <button
                 class="btn-card"
@@ -72,13 +72,12 @@ export function getPokemonCardTemplate(
         </div>
     `;
 
-    return html;
+  return html;
 }
 
-
 export function getFooterTemplate() {
-    // Create the footer
-    return `
+  // Create the footer
+  return `
         <footer class="footer">
             <a href="#">Impressum</a>
             <br>
