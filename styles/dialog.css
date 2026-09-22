@@ -52,3 +52,7 @@ dialog {
     font-size: 16px;
     font-weight: bold;
 }
+
+body.dialog-open {
+    overflow: hidden;
+}

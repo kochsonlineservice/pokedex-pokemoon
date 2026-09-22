@@ -87,6 +87,9 @@ function openDialog(index) {
   updateDialogContent();
   dialogRef.showModal();
   dialogRef.classList.add("opened");
+  
+document.body.classList.add("dialog-open");
+
 }
 
 // Update the content of the dialog
@@ -167,11 +170,12 @@ function getNextIndex() {
 
 // Close the dialog with animation
 function closeDialog() {
-  dialogRef.classList.remove("opened");
+    dialogRef.classList.remove("opened");
+    document.body.classList.remove("dialog-open");
 
-  setTimeout(() => {
-    dialogRef.close();
-  }, 400);
+    setTimeout(() => {
+        dialogRef.close();
+    }, 400);
 }
 
 // Render the footer
@@ -264,5 +268,9 @@ function showSearchPokemon(pokemon, index) {
     pokemonTypeTwo,
   );
 }
+
+
+document.body.classList.add("dialog-open");
+document.body.classList.remove("dialog-open");
 
 window.openDialog = openDialog;
