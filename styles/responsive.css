@@ -48,3 +48,18 @@
         min-height: 500px;
     }
 }
+
+@media (min-width: 701px) and (max-width: 900px) {
+    .btn_left,
+    .btn_right {
+        top: 70%;
+        transform: translateY(-50%);
+    }
+}
+
+@media (min-width: 510px) and (max-width: 600px) {
+    .btn_left,
+    .btn_right {
+        top: 68%;
+    }
+}

@@ -32,13 +32,13 @@ dialog {
 .btn_left {
     position: absolute;
     left: 10px;
-    top: 90%;
+    top: 80%;
 }
 
 .btn_right {
     position: absolute;
     right: 10px;
-    top: 90%;
+    top: 80%;
 }
 
 

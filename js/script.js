@@ -16,6 +16,7 @@ let currentIndex = 0;
 let dialogRef = null;
 let pokemonList = [];
 let searchInput = null;
+let evolutionCache = {};
 
 // Render the header
 function renderHeader() {
@@ -87,6 +88,9 @@ function openDialog(index) {
   updateDialogContent();
   dialogRef.showModal();
   dialogRef.classList.add("opened");
+
+  let pokemonId = pokemonList[currentIndex].id;
+loadEvolution(pokemonId);
   
 document.body.classList.add("dialog-open");
 
@@ -269,8 +273,49 @@ function showSearchPokemon(pokemon, index) {
   );
 }
 
+async function loadEvolution(pokemonId) {
+    if (evolutionCache[pokemonId]) {
+        showEvolution(evolutionCache[pokemonId]);
+        return;
+    }
 
-document.body.classList.add("dialog-open");
-document.body.classList.remove("dialog-open");
+    let evolutionData = await fetchEvolutionData();
+    evolutionCache[pokemonId] = evolutionData;
+    showEvolution(evolutionData);
+}
+
+async function fetchEvolutionData() {
+    let speciesUrl = pokemonList[currentIndex].species.url;
+
+    let response = await fetch(speciesUrl);
+    let responseAsJson = await response.json();
+
+    let evolutionUrl = responseAsJson.evolution_chain.url;
+
+    let evolutionResponse = await fetch(evolutionUrl);
+    return await evolutionResponse.json();
+}
+
+
+function showEvolution(evolutionData) {
+    let evolutionRef = document.getElementById("pokemonEvolution");
+    let chain = evolutionData.chain;
+
+    let evolutionName = chain.species.name;
+
+    if (chain.evolves_to.length > 0) {
+        evolutionName += " → " + chain.evolves_to[0].species.name;
+
+        if (chain.evolves_to[0].evolves_to.length > 0) {
+            evolutionName += " → " +
+                chain.evolves_to[0].evolves_to[0].species.name;
+        }
+    }
+
+    evolutionRef.innerText = "Evolution: " + evolutionName;
+}
+
+
+
 
 window.openDialog = openDialog;

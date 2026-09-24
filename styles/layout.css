@@ -52,4 +52,19 @@
      cursor: pointer;
 }
 
+#pokemonEvolution {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+
+.btn_left,
+.btn_right {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    top: 70%;
+}
 
