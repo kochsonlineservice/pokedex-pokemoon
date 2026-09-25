@@ -1,66 +1,88 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <!-- Grundlegende Einstellungen -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
 
     <!-- SEO -->
     <title>Pokedex</title>
 
     <meta
-      name="description"
-      content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
+        name="description"
+        content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
     />
 
     <meta
-      name="keywords"
-      content="Pokémon, Pokedex, Pokemon Informationen, Pokémon Suche"
+        name="keywords"
+        content="Pokémon, Pokedex, Pokemon Informationen, Pokémon Suche"
     />
 
     <meta name="author" content="Ralph Koch" />
     <meta name="robots" content="index, follow" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://deine-domain.de/" />
+    <link
+        rel="canonical"
+        href="https://ralphkoch.developerakademie.net/pokemon/pokedex-pokemon/index.html"
+    />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./assets/icons/favicon.png" />
+    <link
+        rel="icon"
+        type="image/png"
+        href="./assets/icons/favicon.png"
+    />
 
-    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Pokedex" />
+
     <meta
-      property="og:description"
-      content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
+        property="og:description"
+        content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
     />
-    <meta property="og:url" content="https://deine-domain.de/" />
+
     <meta
-      property="og:image"
-      content="https://deine-domain.de/assets/images/social-preview.jpg"
+        property="og:url"
+        content="https://ralphkoch.developerakademie.net/pokemon/pokedex-pokemon/index.html"
     />
+
+    <meta
+        property="og:image"
+        content="https://ralphkoch.developerakademie.net/pokemon/pokedex-pokemon/assets/icons/favicon.png"
+    />
+
     <meta property="og:site_name" content="Pokedex" />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Pokedex" />
+
     <meta
-      name="twitter:description"
-      content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
+        name="twitter:description"
+        content="Entdecke Pokémon und ihre Informationen in diesem modernen Pokedex."
     />
+
     <meta
-      name="twitter:image"
-      content="https://deine-domain.de/assets/images/social-preview.jpg"
+        name="twitter:image"
+        content="https://ralphkoch.developerakademie.net/pokemon/pokedex-pokemon/assets/icons/favicon.png"
     />
 
     <!-- CSS -->
     <link rel="stylesheet" href="./style.css" />
-  </head>
+</head>
 
   <body>
     <div id="header"></div>
 
     <main id="content" data-id="content">
+      <div id="loading-spinner" class="loading-spinner" aria-label="Loading"></div>
+
+<ul id="pokemon-list"></ul>
     <ul id="pokemon-list"></ul>
    </main>
 
@@ -82,13 +104,13 @@
         id="grossesBild"
         data-id="dialog-image"
         class="large-img"
-        alt="Vergrößertes Bild"
+        alt="Enlarged Pokémon image"
       />
 
       <button
         class="btn_close"
         data-id="close-dialog-button"
-        aria-label="Dialog schließen"
+        aria-label="Close dialog"
       >
         ✕
       </button>
@@ -96,7 +118,7 @@
       <button
         class="btn_left"
         data-id="prev-button"
-        aria-label="Vorheriges Bild"
+       aria-label="Previous Pokémon"
       >
         <svg viewBox="0 0 24 24" width="30" height="30">
           <path
@@ -121,7 +143,7 @@
       <button
         class="btn_right"
         data-id="next-button"
-        aria-label="Nächstes Bild"
+      aria-label="Next Pokémon"
       >
         <svg viewBox="0 0 24 24" width="30" height="30">
           <path

@@ -11,10 +11,14 @@ The application uses the PokéAPI to fetch Pokémon data and displays the Pokém
 - Search for Pokémon
 - Load more Pokémon
 - Detailed Pokémon information in a dialog
+- HP, Attack and Defense stats
+- Pokémon evolution chain
 - Previous and next Pokémon navigation
 - Responsive design
 - API data fetched dynamically
-- Caching of already loaded data
+- Lazy loading of evolution data
+- Caching of loaded evolution data
+- Loading feedback
 
 ## Technologies
 
@@ -29,10 +33,12 @@ The application uses the PokéAPI to fetch Pokémon data and displays the Pokém
 This project uses the PokéAPI:
 
 https://pokeapi.co/
+
 ## Project Structure
 
 ```text
 pokedex-pokemon/
+
 ├── assets/
 │   ├── fonts/
 │   └── icons/
@@ -52,5 +58,6 @@ pokedex-pokemon/
 │
 ├── .gitignore
 ├── index.html
+├── style.css
 ├── LICENSE
 └── README.md

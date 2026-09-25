@@ -34,6 +34,7 @@
 
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 body {
@@ -91,4 +92,15 @@ select {
     --max-width: 1440px;
     --border-radius: 10px;
     --transition: 0.2s ease;
+}
+.loading-spinner {
+    display: none;
+    width: 50px;
+    height: 50px;
+    margin: 30px auto;
+    border: 6px solid #ddd;
+    border-top: 6px solid #e3350d;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    grid-column: 1 / -1;
 }

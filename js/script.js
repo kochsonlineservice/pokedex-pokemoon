@@ -41,6 +41,7 @@ init();
 
 // Load Pokémon from the API
 async function loadPokemon() {
+  document.getElementById("loading-spinner").style.display = "block";
   let url = `https://pokeapi.co/api/v2/pokemon?limit=${pokemonLimit}&offset=${pokemonOffset}`;
 
   let response = await fetch(url);
@@ -49,6 +50,7 @@ async function loadPokemon() {
   // Loop through the Pokémon list
   for (let index = 0; index < responseAsJson.results.length; index++) {
     let pokemon = responseAsJson.results[index];
+    document.getElementById("loading-spinner").style.display = "none";
 
     // Load the Pokémon details
     let pokemonDetailsResponse = await fetch(pokemon.url);
@@ -166,8 +168,9 @@ function updateDialogStats() {
 
 // Show the previous Pokémon
 function prevImage() {
-  currentIndex = getPrevIndex();
-  updateDialogContent();
+    currentIndex = getPrevIndex();
+    updateDialogContent();
+    loadEvolution(pokemonList[currentIndex].id);
 }
 
 // Calculate the previous Pokémon index
@@ -177,8 +180,9 @@ function getPrevIndex() {
 
 // Show the next Pokémon
 function nextImage() {
-  currentIndex = getNextIndex();
-  updateDialogContent();
+    currentIndex = getNextIndex();
+    updateDialogContent();
+    loadEvolution(pokemonList[currentIndex].id);
 }
 
 // Calculate the next Pokémon index
@@ -218,13 +222,13 @@ function renderNotFound() {
     notFound.innerText = "No Pokémon found.";
 
     content.appendChild(notFound);
+let closeButton = document.createElement("button");
+closeButton.innerText = "Close";
+closeButton.classList.add("close-search");
+closeButton.setAttribute("aria-label", "Close search results");
+closeButton.addEventListener("click", showAllPokemon);
 
-    let closeButton = document.createElement("button");
-    closeButton.innerText = "Close";
-    closeButton.classList.add("close-search");
-    closeButton.addEventListener("click", showAllPokemon);
-
-    content.appendChild(closeButton);
+content.appendChild(closeButton);
 }
 
 // Initialize the search
