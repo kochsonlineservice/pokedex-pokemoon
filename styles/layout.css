@@ -84,3 +84,63 @@
     border-radius: 10px;
     background-color: #4B164C;
 }
+
+.load-more-button {
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 18px 30px;
+
+    background: linear-gradient(135deg, #4B164C, #8B1E5A);
+    color: #ffffff;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    transition: all 0.3s ease;
+}
+
+.load-more-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+.load-more-button {
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 18px 30px;
+
+    background: linear-gradient(to bottom, #bb1c73, #6abcb0);
+    color: #ffffff;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
+
+.load-more-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
+.load-more-button:active {
+    transform: translateY(0);
+}
