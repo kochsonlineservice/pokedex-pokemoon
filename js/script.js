@@ -276,7 +276,7 @@ function showNoResults() {
 function showSearchPokemon(pokemon, index) {
   let pokemonName = pokemon.name;
 
-  document.getElementById("content").innerHTML = "";
+  document.getElementById("pokemon-list").innerHTML = "";
 
   let pokemonImage =
     pokemon.sprites.other["official-artwork"].front_default;
@@ -290,7 +290,7 @@ function showSearchPokemon(pokemon, index) {
     pokemonTypeTwo = " / " + pokemon.types[1].type.name;
   }
 
-  document.getElementById("content").innerHTML = getPokemonCardTemplate(
+  document.getElementById("pokemon-list").innerHTML = getPokemonCardTemplate(
     index,
     pokemonName,
     pokemonImage,
