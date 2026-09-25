@@ -19,7 +19,7 @@ let dialogRef = null;
 let pokemonList = [];
 let searchInput = null;
 let evolutionCache = {};
-let pokemonLimit = 9;
+let pokemonLimit = 21;
 let pokemonOffset = 0;
 let loadMoreButton = null;
 
@@ -32,8 +32,9 @@ function renderHeader() {
 
 // Show all loaded Pokémon again
 function showAllPokemon() {
-  document.getElementById("content").innerHTML = "";
-  loadPokemon();
+    document.getElementById("content").innerHTML =
+        '<ul id="pokemon-list"></ul>';
+    loadPokemon();
 }
 
 init();
@@ -56,7 +57,7 @@ async function loadPokemon() {
     pokemonList.push(pokemonDetails);
 
     // Render the Pokémon card
-    renderPokemonCard(pokemonDetails, index);
+   renderPokemonCard(pokemonDetails, pokemonList.length - 1);
   }
 }
 
@@ -65,7 +66,7 @@ async function loadMorePokemon() {
   loadMoreButton.disabled = true;
   loadMoreButton.innerText = "Loading...";
 
-  pokemonOffset += 9;
+  pokemonOffset += 20;
   await loadPokemon();
 
   loadMoreButton.disabled = false;
@@ -74,26 +75,25 @@ async function loadMorePokemon() {
 
 // Create and render a Pokémon card
 function renderPokemonCard(pokemon, index) {
-  let pokemonName = pokemon.name;
-  let pokemonImage =
-    pokemon.sprites.other["official-artwork"].front_default;
-  let pokemonId = pokemon.id;
-  let pokemonTypes = pokemon.types[0].type.name;
-  let pokemonTypeTwo = "";
+    let pokemonName = pokemon.name;
+    let pokemonImage =
+        pokemon.sprites.other["official-artwork"].front_default;
+    let pokemonId = pokemon.id;
+    let pokemonTypes = pokemon.types[0].type.name;
+    let pokemonTypeTwo = "";
 
-  // Check if the Pokémon has a second type
-  if (pokemon.types.length > 1) {
-    pokemonTypeTwo = " / " + pokemon.types[1].type.name;
-  }
+    if (pokemon.types.length > 1) {
+        pokemonTypeTwo = " / " + pokemon.types[1].type.name;
+    }
 
-  document.getElementById("content").innerHTML += getPokemonCardTemplate(
-    index,
-    pokemonName,
-    pokemonImage,
-    pokemonId,
-    pokemonTypes,
-    pokemonTypeTwo,
-  );
+    document.getElementById("pokemon-list").innerHTML += getPokemonCardTemplate(
+        index,
+        pokemonName,
+        pokemonImage,
+        pokemonId,
+        pokemonTypes,
+        pokemonTypeTwo,
+    );
 }
 
 // Initialize the dialog
@@ -207,25 +207,24 @@ function closeDialog() {
 function renderFooter() {
   document.getElementById("footer").innerHTML = getFooterTemplate();
 }
-
 // Show a message when no Pokémon was found
 function renderNotFound() {
-  let content = document.getElementById("content");
-  content.innerHTML = "";
+    let content = document.getElementById("content");
+    content.innerHTML = '<ul id="pokemon-list"></ul>';
 
-  let notFound = document.createElement("p");
-  notFound.classList.add("not-found");
-  notFound.setAttribute("data-id", "not-found");
-  notFound.innerText = "No Pokémon found.";
+    let notFound = document.createElement("p");
+    notFound.classList.add("not-found");
+    notFound.setAttribute("data-id", "not-found");
+    notFound.innerText = "No Pokémon found.";
 
-  content.appendChild(notFound);
+    content.appendChild(notFound);
 
-  let closeButton = document.createElement("button");
-  closeButton.innerText = "Close";
-  closeButton.classList.add("close-search");
-  closeButton.addEventListener("click", showAllPokemon);
+    let closeButton = document.createElement("button");
+    closeButton.innerText = "Close";
+    closeButton.classList.add("close-search");
+    closeButton.addEventListener("click", showAllPokemon);
 
-  content.appendChild(closeButton);
+    content.appendChild(closeButton);
 }
 
 // Initialize the search

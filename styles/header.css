@@ -2,14 +2,12 @@
     width: 100%;
     padding: 24px 20px;
     box-sizing: border-box;
- background: linear-gradient(to bottom, #bb1c73, #6abcb0);
-;
+    background: linear-gradient(to bottom, #bb1c73, #6abcb0);
 }
 
 header {
     max-width: 1440px;
     margin: 0 auto;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -28,10 +26,8 @@ header h1 {
     max-width: 450px;
     padding: 14px 18px;
     box-sizing: border-box;
-
     border: 2px solid #ddd;
     border-radius: 10px;
-
     font-size: 16px;
     outline: none;
 }
@@ -60,21 +56,14 @@ header h1 {
 #search-button:active {
     transform: translateY(0);
 }
+
 .header-monster {
-    width: 15p0x;
+    width: 150px;
     height: 150px;
     object-fit: contain;
     flex-shrink: 0;
-
     filter: brightness(0) saturate(100%)
-            invert(13%) sepia(99%)
-            saturate(6932%)
-            hue-rotate(1deg)
-            brightness(92%)
-            contrast(115%);
+        invert(13%) sepia(99%)
+        saturate(6932%) hue-rotate(1deg)
+        brightness(92%) contrast(115%);
 }
-
-
-
-
-

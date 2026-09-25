@@ -60,17 +60,24 @@
   <body>
     <div id="header"></div>
 
-    <main id="content" data-id="content"></main>
+    <main id="content" data-id="content">
+    <ul id="pokemon-list"></ul>
+   </main>
 
     <button
-      id="load-more-button"
-      class="load-more-button"
-      data-id="load-more-button"
-    >
-      Load More
-    </button>
+    id="load-more-button"
+    class="load-more-button"
+    data-id="load-more-button"
+    aria-label="Load more Pokémon"
+>
+    Load More
+</button>
 
-    <dialog id="dialog" data-id="dialog">
+    <dialog
+    id="dialog"
+    data-id="dialog"
+    aria-label="Pokémon details"
+>
       <img
         id="grossesBild"
         data-id="dialog-image"

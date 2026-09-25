@@ -1,4 +1,4 @@
-/* Header-Style */
+/* Header responsive */
 @media (max-width: 700px) {
     header {
         flex-direction: column;
@@ -15,7 +15,6 @@
 }
 
 /* Responsive content layout */
-
 @media (max-width: 1000px) {
     #content {
         grid-template-columns: repeat(2, 1fr);
@@ -30,8 +29,12 @@
     }
 }
 
-
 /* Dialog responsive */
+@media (max-width: 700px) and (min-width: 501px) {
+    dialog {
+        min-height: 500px;
+    }
+}
 
 @media (max-width: 500px) {
     dialog {
@@ -40,15 +43,7 @@
     }
 }
 
-
-/* Dialog for medium screens */
-
-@media (max-width: 700px) and (min-width: 501px) {
-    dialog {
-        min-height: 500px;
-    }
-}
-
+/* Dialog navigation for medium screens */
 @media (min-width: 701px) and (max-width: 900px) {
     .btn_left,
     .btn_right {

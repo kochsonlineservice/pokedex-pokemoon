@@ -29,20 +29,28 @@ The application uses the PokéAPI to fetch Pokémon data and displays the Pokém
 This project uses the PokéAPI:
 
 https://pokeapi.co/
-
 ## Project Structure
 
 ```text
 pokedex-pokemon/
-│
 ├── assets/
-├── js/
-│   ├── storage.js
-│   └── ui.js
+│   ├── fonts/
+│   └── icons/
 │
-├── index.html
-├── script.js
-├── style.css
+├── js/
+│   ├── script.js
+│   └── template.js
+│
+├── styles/
+│   ├── assets.css
+│   ├── dialog.css
+│   ├── footer.css
+│   ├── global.css
+│   ├── header.css
+│   ├── layout.css
+│   └── responsive.css
+│
 ├── .gitignore
+├── index.html
 ├── LICENSE
 └── README.md

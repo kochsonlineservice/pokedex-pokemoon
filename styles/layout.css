@@ -15,6 +15,13 @@
      cursor: pointer;
 }
 
+#pokemon-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: contents;
+}
+
 #content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -113,6 +120,7 @@
     transform: translateY(-3px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
 }
+
 .load-more-button {
     display: block;
     width: 80%;

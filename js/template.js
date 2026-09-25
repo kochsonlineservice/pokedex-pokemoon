@@ -27,12 +27,13 @@ export function getHeaderTemplate() {
                 >
 
                 <button
-                        id="search-button"
-                        data-id="search-button"
-                        type="button"
-                            >
-                        Search
-                </button>
+    id="search-button"
+    data-id="search-button"
+    type="button"
+    aria-label="Search Pokémon"
+>
+    Search
+</button>
             </header>
         </div>
     `;
@@ -48,6 +49,7 @@ export function getPokemonCardTemplate(
 ) {
   // Create the Pokémon card
   let html = `
+    <li>
         <div class="pokemon-card ${pokemonTypes}">
             <button
                 class="btn-card"
@@ -70,7 +72,8 @@ export function getPokemonCardTemplate(
                 </span>
             </button>
         </div>
-    `;
+    </li>
+`;
 
   return html;
 }
@@ -84,9 +87,7 @@ export function getFooterTemplate() {
 
             <br>
 
-            <span id="year" class="footer-span">
-                @ Developer Akademie 2026
-            </span>
+            <span id="year" class="footer-span"></span>
         </footer>
     `;
 }
