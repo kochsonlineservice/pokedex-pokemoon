@@ -32,9 +32,12 @@ function renderHeader() {
 
 // Show all loaded Pokémon again
 function showAllPokemon() {
-    document.getElementById("content").innerHTML =
-        '<ul id="pokemon-list"></ul>';
-    loadPokemon();
+    let pokemonListRef = document.getElementById("pokemon-list");
+    pokemonListRef.innerHTML = "";
+
+    for (let index = 0; index < pokemonList.length; index++) {
+        renderPokemonCard(pokemonList[index], index);
+    }
 }
 
 init();
@@ -88,16 +91,16 @@ function renderPokemonCard(pokemon, index) {
         pokemonTypeTwo = " / " + pokemon.types[1].type.name;
     }
 
-    document.getElementById("pokemon-list").innerHTML += getPokemonCardTemplate(
-        index,
-        pokemonName,
-        pokemonImage,
-        pokemonId,
-        pokemonTypes,
-        pokemonTypeTwo,
-    );
+    document.getElementById("pokemon-list").innerHTML +=
+        getPokemonCardTemplate(
+            index,
+            pokemonName,
+            pokemonImage,
+            pokemonId,
+            pokemonTypes,
+            pokemonTypeTwo,
+        );
 }
-
 // Initialize the dialog
 function initDialog() {
   dialogRef = document.getElementById("dialog");
@@ -213,8 +216,8 @@ function renderFooter() {
 }
 // Show a message when no Pokémon was found
 function renderNotFound() {
-    let content = document.getElementById("content");
-    content.innerHTML = '<ul id="pokemon-list"></ul>';
+    let content = document.getElementById("content"); content.innerHTML = '<ul id="pokemon-list"></ul>';
+   
 
     let notFound = document.createElement("p");
     notFound.classList.add("not-found");
@@ -244,27 +247,48 @@ function initSearch() {
       searchPokemon();
     }
   });
+
+  searchInput.addEventListener("input", searchPokemon);
 }
 
-// Search for a Pokémon
+
 function searchPokemon() {
-  const searchTerm = searchInput.value;
+    const searchTerm = searchInput.value.toLowerCase();
 
-  if (searchTerm.length >= 3) {
-    for (let index = 0; index < pokemonList.length; index++) {
-      let pokemon = pokemonList[index];
+    if (searchTerm.length >= 3) {
+        let searchResults = [];
 
-      if (pokemon.name.includes(searchTerm)) {
-        console.log(pokemon.name);
-        showSearchPokemon(pokemon, index);
-        return;
-      }
+        for (let index = 0; index < pokemonList.length; index++) {
+            let pokemon = pokemonList[index];
+
+            if (pokemon.name.startsWith(searchTerm)) {
+                searchResults.push({
+                    pokemon: pokemon,
+                    index: index,
+                });
+            }
+        }
+
+        if (searchResults.length > 0) {
+            showSearchResults(searchResults);
+        } else {
+            showNoResults();
+        }
+    } else {
+        showAllPokemon();
     }
+}
 
-    showNoResults();
-  } else {
-    showNoResults();
-  }
+
+function showSearchResults(searchResults) {
+    let pokemonListRef = document.getElementById("pokemon-list");
+    pokemonListRef.innerHTML = "";
+
+    for (let index = 0; index < searchResults.length; index++) {
+        let result = searchResults[index];
+
+        showSearchPokemon(result.pokemon, result.index);
+    }
 }
 
 // Show the no-results message
@@ -276,7 +300,7 @@ function showNoResults() {
 function showSearchPokemon(pokemon, index) {
   let pokemonName = pokemon.name;
 
-  document.getElementById("pokemon-list").innerHTML = "";
+
 
   let pokemonImage =
     pokemon.sprites.other["official-artwork"].front_default;
@@ -290,7 +314,7 @@ function showSearchPokemon(pokemon, index) {
     pokemonTypeTwo = " / " + pokemon.types[1].type.name;
   }
 
-  document.getElementById("pokemon-list").innerHTML = getPokemonCardTemplate(
+  document.getElementById("pokemon-list").innerHTML += getPokemonCardTemplate(
     index,
     pokemonName,
     pokemonImage,
