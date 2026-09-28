@@ -58,3 +58,15 @@
         top: 68%;
     }
 }
+
+@media (max-height: 700px) {
+    dialog {
+        min-height: 0;
+    }
+
+    #grossesBild {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+    }
+}

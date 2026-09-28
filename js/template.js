@@ -1,6 +1,6 @@
 export function getHeaderTemplate() {
-  // Create the header
-  return `
+    // Create the header
+    return `
         <div class="header-content">
             <header>
                 <a href="./index.html">
@@ -13,12 +13,22 @@ export function getHeaderTemplate() {
                     alt=""
                 >
 
-                <input
-                    type="text"
-                    id="search-input"
-                    data-id="search-input"
-                    placeholder="Search Pokémon"
-                >
+                <div class="search-container">
+                    <input
+                        type="text"
+                        id="search-input"
+                        data-id="search-input"
+                        placeholder="Search Pokémon"
+                    >
+
+                    <button
+                        id="clear-search-button"
+                        type="button"
+                        aria-label="Clear search"
+                    >
+                        ✕
+                    </button>
+                </div>
 
                 <img
                     class="header-monster"
@@ -27,13 +37,13 @@ export function getHeaderTemplate() {
                 >
 
                 <button
-    id="search-button"
-    data-id="search-button"
-    type="button"
-    aria-label="Search Pokémon"
->
-    Search
-</button>
+                    id="search-button"
+                    data-id="search-button"
+                    type="button"
+                    aria-label="Search Pokémon"
+                >
+                    Search
+                </button>
             </header>
         </div>
     `;
@@ -82,7 +92,7 @@ export function getFooterTemplate() {
   // Create the footer
   return `
         <footer class="footer">
-            <a href="#">Impressum</a>
+           
             <br>
 
             <br>

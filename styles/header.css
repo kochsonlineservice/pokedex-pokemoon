@@ -67,3 +67,33 @@ header h1 {
         saturate(6932%) hue-rotate(1deg)
         brightness(92%) contrast(115%);
 }
+
+#clear-search-button {
+    background-color: whitesmoke;
+    border-radius: 10px;
+   border: 2px solid red;
+    font-size: 29px;
+    cursor: pointer;
+    padding: 5px;
+    color: red;
+}
+
+.search-container {
+    position: relative;
+}
+
+#search-input {
+    padding-right: 40px;
+}
+
+#clear-search-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
