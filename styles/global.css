@@ -93,6 +93,7 @@ select {
     --border-radius: 10px;
     --transition: 0.2s ease;
 }
+
 .loading-spinner {
     display: none;
     width: 50px;
@@ -103,4 +104,14 @@ select {
     border-radius: 50%;
     animation: spin 1s linear infinite;
     grid-column: 1 / -1;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

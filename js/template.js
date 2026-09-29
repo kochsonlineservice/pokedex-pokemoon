@@ -1,17 +1,13 @@
 export function getHeaderTemplate() {
-    // Create the header
-    return `
+  // Create the header
+  return `
         <div class="header-content">
             <header>
                 <a href="./index.html">
                     <h1>Pokédex</h1>
                 </a>
 
-                <img
-                    class="header-monster"
-                    src="./assets/icons/header-icon.svg"
-                    alt=""
-                >
+               
 
                 <div class="search-container">
                     <input
@@ -19,8 +15,8 @@ export function getHeaderTemplate() {
                         id="search-input"
                         data-id="search-input"
                         placeholder="Search Pokémon"
+                        
                     >
-
                     <button
                         id="clear-search-button"
                         type="button"
@@ -28,15 +24,8 @@ export function getHeaderTemplate() {
                     >
                         ✕
                     </button>
-                </div>
 
-                <img
-                    class="header-monster"
-                    src="./assets/icons/header-icon.svg"
-                    alt=""
-                >
-
-                <button
+                    <button
                     id="search-button"
                     data-id="search-button"
                     type="button"
@@ -44,46 +33,51 @@ export function getHeaderTemplate() {
                 >
                     Search
                 </button>
+                    
+                </div>
+
+               
+
+                
             </header>
         </div>
     `;
 }
 
-export function getPokemonCardTemplate(
-  index,
-  pokemonName,
-  pokemonImage,
-  pokemonId,
-  pokemonTypes,
-  pokemonTypeTwo,
-) {
+export function getPokemonCardTemplate(pokemon, index) {
   // Create the Pokémon card
+
+  let pokemonType = pokemon.types[0].type.name;
+
+if (pokemon.types.length > 1) {
+    pokemonType += " / " + pokemon.types[1].type.name;
+}
   let html = `
-    <li>
-        <div class="pokemon-card ${pokemonTypes}">
-            <button
-                class="btn-card"
-                data-id="card"
-                onclick="openDialog(${index})"
-            >
-                <span class="pokemon-name">
-                    #${pokemonId} ${pokemonName}
-                </span>
-
-                <img
-                    class="img-card"
-                    data-id="card-image"
-                    src="${pokemonImage}"
-                    alt=""
+        <li>
+           <div class="pokemon-card ${pokemon.types[0].type.name}">
+                <button
+                    class="btn-card"
+                    data-id="card"
+                    onclick="openDialog(${index})"
                 >
+                    <span class="pokemon-name">
+                      #${pokemon.id} ${pokemon.name}
+                    </span>
 
-                <span class="pokemon-type">
-                    Type: ${pokemonTypes} ${pokemonTypeTwo}
-                </span>
-            </button>
-        </div>
-    </li>
-`;
+                    <img
+                        class="img-card"
+                        data-id="card-image"
+                       src="${pokemon.sprites.other["official-artwork"].front_default}"
+                        alt=""
+                    >
+
+                    <span class="pokemon-type">
+    Type: ${pokemonType}
+</span>
+                </button>
+            </div>
+        </li>
+    `;
 
   return html;
 }

@@ -40,15 +40,21 @@ function showAllPokemon() {
   }
 }
 
-init();
+
 
 // Load Pokémon from the API
 async function loadPokemon() {
-  showLoadingSpinner();
-  let responseAsJson = await fetchPokemonList();
-  await loadPokemonDetails(responseAsJson.results);
-  showAllPokemon();
-  hideLoadingSpinner();
+    showLoadingSpinner();
+
+    let startIndex = pokemonList.length;
+
+    let responseAsJson = await fetchPokemonList();
+
+    await loadPokemonDetails(responseAsJson.results);
+
+    renderNewPokemon(startIndex);
+
+    hideLoadingSpinner();
 }
 
 function showLoadingSpinner() {
@@ -89,28 +95,12 @@ async function loadMorePokemon() {
 
 // Create and render a Pokémon card
 function renderPokemonCard(pokemon, index) {
-  let pokemonData = getPokemonCardData(pokemon);
-  let cardTemplate = getPokemonCardTemplate(index, ...pokemonData);
+ 
+  let cardTemplate = getPokemonCardTemplate(pokemon, index);
   document.getElementById("pokemon-list").innerHTML += cardTemplate;
 }
 
-function getPokemonCardData(pokemon) {
-  let pokemonName = pokemon.name;
-  let pokemonImage = pokemon.sprites.other["official-artwork"].front_default;
-  let pokemonId = pokemon.id;
-  let pokemonTypes = pokemon.types[0].type.name;
-  let pokemonTypeTwo = getSecondPokemonType(pokemon);
 
-  return [pokemonName, pokemonImage, pokemonId, pokemonTypes, pokemonTypeTwo];
-}
-
-function getSecondPokemonType(pokemon) {
-  if (pokemon.types.length > 1) {
-    return " / " + pokemon.types[1].type.name;
-  }
-
-  return "";
-}
 
 // Initialize the dialog
 function initDialog() {
@@ -297,38 +287,44 @@ function initSearch() {
 }
 
 function searchPokemon() {
-  const searchTerm = searchInput.value.toLowerCase();
+    const searchTerm = searchInput.value.toLowerCase();
 
-  if (searchTerm.length >= 3) {
-    let searchResults = [];
+    if (searchTerm.length >= 3) {
+        let searchResults = [];
 
-    for (let index = 0; index < pokemonList.length; index++) {
-      let pokemon = pokemonList[index];
+        for (let index = 0; index < pokemonList.length; index++) {
+            let pokemon = pokemonList[index];
 
-      if (pokemon.name.startsWith(searchTerm)) {
-        searchResults.push({
-          pokemon: pokemon,
-          index: index,
-        });
-      }
-    }
+            if (pokemon.name.includes(searchTerm)) {
+                searchResults.push({
+                    pokemon: pokemon,
+                    index: index,
+                });
+            }
+        }
 
-    if (searchResults.length > 0) {
-      showSearchResults(searchResults);
+        if (searchResults.length > 0) {
+            showSearchResults(searchResults);
+        } else {
+            showNoResults();
+        }
     } else {
-      showNoResults();
+        showAllPokemon();
+        loadMoreButton.style.display = "block";
     }
-  } else {
-    showAllPokemon();
-    loadMoreButton.style.display = "block";
-  }
+}
+
+function renderNewPokemon(startIndex) {
+    for (let index = startIndex; index < pokemonList.length; index++) {
+        renderPokemonCard(pokemonList[index], index);
+    }
 }
 
 function findSearchResults(searchTerm) {
   let searchResults = [];
 
   for (let index = 0; index < pokemonList.length; index++) {
-    if (pokemonList[index].name.startsWith(searchTerm)) {
+   if (pokemonList[index].name.includes(searchTerm)){
       searchResults.push({
         pokemon: pokemonList[index],
         index: index,
@@ -368,9 +364,8 @@ function showNoResults() {
 
 // Show the found Pokémon as a card
 function showSearchPokemon(pokemon, index) {
-  let pokemonData = getPokemonCardData(pokemon);
-  let cardTemplate = getPokemonCardTemplate(index, ...pokemonData);
-  document.getElementById("pokemon-list").innerHTML += cardTemplate;
+    let cardTemplate = getPokemonCardTemplate(pokemon, index);
+    document.getElementById("pokemon-list").innerHTML += cardTemplate;
 }
 
 // Load the evolution data for a Pokémon
@@ -474,4 +469,5 @@ function setFooterYear() {
   document.getElementById("year").textContent = YEAR_PREFIX + year;
 }
 
+window.init = init;
 window.openDialog = openDialog;
