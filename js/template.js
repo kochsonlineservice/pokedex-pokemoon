@@ -10,31 +10,34 @@ export function getHeaderTemplate() {
                
 
                 <div class="search-container">
-                    <input
-                        type="text"
-                        id="search-input"
-                        data-id="search-input"
-                        placeholder="Search Pokémon"
-                        
-                    >
-                    <button
-                        id="clear-search-button"
-                        type="button"
-                        aria-label="Clear search"
-                    >
-                        ✕
-                    </button>
 
-                    <button
-                    id="search-button"
-                    data-id="search-button"
-                    type="button"
-                    aria-label="Search Pokémon"
-                >
-                    Search
-                </button>
-                    
-                </div>
+    <div class="search-input-container">
+        <input
+            type="text"
+            id="search-input"
+            data-id="search-input"
+            placeholder="Search Pokémon"
+        >
+
+        <button
+            id="clear-search-button"
+            type="button"
+            aria-label="Clear search"
+        >
+            ✕
+        </button>
+    </div>
+
+    <button
+        id="search-button"
+        data-id="search-button"
+        type="button"
+        aria-label="Search Pokémon"
+    >
+        Search
+    </button>
+
+</div>
 
                
 

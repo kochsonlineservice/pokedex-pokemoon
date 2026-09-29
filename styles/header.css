@@ -72,10 +72,13 @@ header h1 {
 }
 
 #clear-search-button {
-    background-color: whitesmoke;
-    border-radius: 10px;
-   border: 2px solid red;
-    font-size: 29px;
+    position: absolute;
+    right: 140px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 22px;
     cursor: pointer;
     padding: 5px;
     color: red;
@@ -93,15 +96,19 @@ header h1 {
 #search-input {
     padding-right: 40px;
 }
-
 #clear-search-button {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
+    background: transparent;
     border: none;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 22px;
     cursor: pointer;
+    padding: 5px;
+    color: red;
+}
+
+.search-input-container {
+    position: relative;
 }

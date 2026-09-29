@@ -247,9 +247,15 @@ function createCloseSearchButton() {
   return closeButton;
 }
 function resetSearch() {
-  searchInput.value = "";
-  showAllPokemon();
-  loadMoreButton.style.display = "block";
+    searchInput.value = "";
+
+    let clearSearchButton =
+        document.getElementById("clear-search-button");
+
+    clearSearchButton.style.display = "none";
+
+    showAllPokemon();
+    loadMoreButton.style.display = "block";
 }
 
 function resetSearchIfEmpty() {
