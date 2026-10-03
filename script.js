@@ -1,18 +1,9 @@
+import { getPokemonCardTemplate } from "./js/template.js";
 import {
-  getHeaderTemplate,
-  getPokemonCardTemplate,
-  getFooterTemplate,
-} from "./js/template.js";
-
-function init() {
-  renderHeader();
-  loadPokemon();
-  renderFooter();
-  initDialog();
-  initSearch();
-  setFooterYear();
-  initLoadMore();
-}
+  findSearchResults,
+  showSearchPokemon,
+  showSearchResults,
+} from "./js/search.js";
 
 let currentIndex = 0;
 let dialogRef = null;
@@ -24,6 +15,36 @@ let pokemonOffset = 0;
 let loadMoreButton = null;
 
 const YEAR_PREFIX = "© Developer Akademie ";
+
+// List of all Pokémon types
+let pokemonTypes = [
+  "grass",
+  "fire",
+  "water",
+  "electric",
+  "ice",
+  "fighting",
+  "poison",
+  "ground",
+  "flying",
+  "psychic",
+  "bug",
+  "rock",
+  "ghost",
+  "dragon",
+  "dark",
+  "steel",
+  "fairy",
+  "normal",
+];
+
+function init() {
+  loadPokemon();
+  initDialog();
+  initSearch();
+  setFooterYear();
+  initLoadMore();
+}
 
 // Render the header
 function renderHeader() {
@@ -40,21 +61,18 @@ function showAllPokemon() {
   }
 }
 
-
-
-// Load Pokémon from the API
 async function loadPokemon() {
-    showLoadingSpinner();
+  showLoadingSpinner();
 
-    let startIndex = pokemonList.length;
+  let startIndex = pokemonList.length;
 
-    let responseAsJson = await fetchPokemonList();
+  let responseAsJson = await fetchPokemonList();
 
-    await loadPokemonDetails(responseAsJson.results);
+  await loadPokemonDetails(responseAsJson.results);
 
-    renderNewPokemon(startIndex);
+  renderNewPokemon(startIndex);
 
-    hideLoadingSpinner();
+  hideLoadingSpinner();
 }
 
 function showLoadingSpinner() {
@@ -83,7 +101,6 @@ function hideLoadingSpinner() {
   document.getElementById("loading-spinner").style.display = "none";
 }
 
-// Load more Pokémon when the button is clicked
 async function loadMorePokemon() {
   loadMoreButton.disabled = true;
   loadMoreButton.innerText = "Loading...";
@@ -93,16 +110,11 @@ async function loadMorePokemon() {
   loadMoreButton.innerText = "Load More";
 }
 
-// Create and render a Pokémon card
 function renderPokemonCard(pokemon, index) {
- 
   let cardTemplate = getPokemonCardTemplate(pokemon, index);
   document.getElementById("pokemon-list").innerHTML += cardTemplate;
 }
 
-
-
-// Initialize the dialog
 function initDialog() {
   dialogRef = document.getElementById("dialog");
   dialogRef.addEventListener("click", handleDialogClick);
@@ -119,7 +131,6 @@ function addDialogButtonListeners() {
   nextButton.addEventListener("click", nextImage);
 }
 
-// Open the dialog for the selected Pokémon
 function openDialog(index) {
   currentIndex = index;
   updateDialogContent();
@@ -129,7 +140,6 @@ function openDialog(index) {
   document.body.classList.add("dialog-open");
 }
 
-// Update the dialog content
 function updateDialogContent() {
   let pokemon = pokemonList[currentIndex];
   updateDialogImage(pokemon);
@@ -161,7 +171,6 @@ function getPokemonTypeText(pokemon) {
   return pokemonType;
 }
 
-// Update the Pokémon stats in the dialog
 function updateDialogStats() {
   const stats = pokemonList[currentIndex].stats;
   setDialogStat("pokemonHp", "HP: ", stats[0].base_stat);
@@ -173,7 +182,6 @@ function setDialogStat(id, label, value) {
   document.getElementById(id).innerText = label + value;
 }
 
-// Show the previous Pokémon
 function prevImage() {
   currentIndex = getPrevIndex();
   updateDialogContent();
@@ -197,14 +205,12 @@ function getNextIndex() {
   return (currentIndex + 1) % pokemonList.length;
 }
 
-// Close the dialog when clicking outside the content
 function handleDialogClick(event) {
   if (event.target === dialogRef) {
     closeDialog();
   }
 }
 
-// Close the dialog with animation
 function closeDialog() {
   dialogRef.classList.remove("opened");
   document.body.classList.remove("dialog-open");
@@ -214,12 +220,10 @@ function closeDialog() {
   }, 400);
 }
 
-// Render the footer
 function renderFooter() {
   document.getElementById("footer").innerHTML = getFooterTemplate();
 }
 
-// Show a message when no Pokémon was found
 function renderNotFound() {
   let content = document.getElementById("content");
   content.innerHTML = '<ul id="pokemon-list"></ul>';
@@ -247,31 +251,27 @@ function createCloseSearchButton() {
   return closeButton;
 }
 function resetSearch() {
-    searchInput.value = "";
+  searchInput.value = "";
 
-    let clearSearchButton =
-        document.getElementById("clear-search-button");
+  let clearSearchButton = document.getElementById("clear-search-button");
 
-    clearSearchButton.style.display = "none";
+  clearSearchButton.style.display = "none";
 
-    showAllPokemon();
-    loadMoreButton.style.display = "block";
+  showAllPokemon();
+  loadMoreButton.style.display = "block";
 }
 
 function resetSearchIfEmpty() {
-    const clearSearchButton =
-        document.getElementById("clear-search-button");
+  const clearSearchButton = document.getElementById("clear-search-button");
 
-    if (searchInput.value === "") {
-        clearSearchButton.style.display = "none";
-        resetSearch();
-    } else {
-        clearSearchButton.style.display = "block";
-    }
+  if (searchInput.value === "") {
+    clearSearchButton.style.display = "none";
+    resetSearch();
+  } else {
+    clearSearchButton.style.display = "block";
+  }
 }
 
-
-// Initialize the search
 function initSearch() {
   searchInput = document.getElementById("search-input");
 
@@ -293,52 +293,26 @@ function initSearch() {
 }
 
 function searchPokemon() {
-    const searchTerm = searchInput.value.toLowerCase();
+  const searchTerm = searchInput.value.toLowerCase();
 
-    if (searchTerm.length >= 3) {
-        let searchResults = [];
+  if (searchTerm.length >= 3) {
+    let searchResults = findSearchResults(pokemonList, searchTerm);
 
-        for (let index = 0; index < pokemonList.length; index++) {
-            let pokemon = pokemonList[index];
-
-            if (pokemon.name.includes(searchTerm)) {
-                searchResults.push({
-                    pokemon: pokemon,
-                    index: index,
-                });
-            }
-        }
-
-        if (searchResults.length > 0) {
-            showSearchResults(searchResults);
-        } else {
-            showNoResults();
-        }
+    if (searchResults.length > 0) {
+      showSearchResults(searchResults,loadMoreButton);
     } else {
-        showAllPokemon();
-        loadMoreButton.style.display = "block";
+      showNoResults();
     }
+  } else {
+    showAllPokemon();
+    loadMoreButton.style.display = "block";
+  }
 }
 
 function renderNewPokemon(startIndex) {
-    for (let index = startIndex; index < pokemonList.length; index++) {
-        renderPokemonCard(pokemonList[index], index);
-    }
-}
-
-function findSearchResults(searchTerm) {
-  let searchResults = [];
-
-  for (let index = 0; index < pokemonList.length; index++) {
-   if (pokemonList[index].name.includes(searchTerm)){
-      searchResults.push({
-        pokemon: pokemonList[index],
-        index: index,
-      });
-    }
+  for (let index = startIndex; index < pokemonList.length; index++) {
+    renderPokemonCard(pokemonList[index], index);
   }
-
-  return searchResults;
 }
 
 function showSearchResultsOrMessage(searchResults) {
@@ -349,32 +323,10 @@ function showSearchResultsOrMessage(searchResults) {
   }
 }
 
-function showSearchResults(searchResults) {
-  let pokemonListRef = document.getElementById("pokemon-list");
-  pokemonListRef.innerHTML = "";
-  loadMoreButton.style.display = "none";
-  renderSearchResults(searchResults);
-}
-
-function renderSearchResults(searchResults) {
-  for (let index = 0; index < searchResults.length; index++) {
-    let result = searchResults[index];
-    showSearchPokemon(result.pokemon, result.index);
-  }
-}
-
-// Show the no-results message
 function showNoResults() {
   renderNotFound();
 }
 
-// Show the found Pokémon as a card
-function showSearchPokemon(pokemon, index) {
-    let cardTemplate = getPokemonCardTemplate(pokemon, index);
-    document.getElementById("pokemon-list").innerHTML += cardTemplate;
-}
-
-// Load the evolution data for a Pokémon
 async function loadEvolution(pokemonId) {
   if (evolutionCache[pokemonId]) {
     showEvolution(evolutionCache[pokemonId]);
@@ -386,7 +338,6 @@ async function loadEvolution(pokemonId) {
   showEvolution(evolutionData);
 }
 
-// Fetch the evolution chain from the API
 async function fetchEvolutionData() {
   let speciesUrl = pokemonList[currentIndex].species.url;
   let response = await fetch(speciesUrl);
@@ -397,7 +348,6 @@ async function fetchEvolutionData() {
   return await evolutionResponse.json();
 }
 
-// Display the evolution chain
 function showEvolution(evolutionData) {
   let evolutionRef = document.getElementById("pokemonEvolution");
   let chain = evolutionData.chain;
@@ -426,29 +376,6 @@ function addSecondEvolution(chain, evolutionName) {
   return evolutionName;
 }
 
-// List of all Pokémon types
-let pokemonTypes = [
-  "grass",
-  "fire",
-  "water",
-  "electric",
-  "ice",
-  "fighting",
-  "poison",
-  "ground",
-  "flying",
-  "psychic",
-  "bug",
-  "rock",
-  "ghost",
-  "dragon",
-  "dark",
-  "steel",
-  "fairy",
-  "normal",
-];
-
-// Update the dialog background according to the Pokémon type
 function updateDialogBackground() {
   let pokemonType = pokemonList[currentIndex].types[0].type.name;
   let dialog = document.getElementById("dialog");
@@ -463,13 +390,11 @@ function removeTypeClasses(dialog) {
   }
 }
 
-// Initialize the Load More button
 function initLoadMore() {
   loadMoreButton = document.getElementById("load-more-button");
   loadMoreButton.addEventListener("click", loadMorePokemon);
 }
 
-// Set the current year in the footer
 function setFooterYear() {
   const year = new Date().getFullYear();
   document.getElementById("year").textContent = YEAR_PREFIX + year;

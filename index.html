@@ -77,8 +77,41 @@
 </head>
 
 <body onload="init()">
-    <div id="header"></div>
+    <div class="header-content">
+    <header>
+        <a href="./index.html">
+            <h1>Pokédex</h1>
+        </a>
 
+        <div class="search-container">
+            <div class="search-input-container">
+                <input
+                    type="text"
+                    id="search-input"
+                    data-id="search-input"
+                    placeholder="Search Pokémon"
+                >
+
+                <button
+                    id="clear-search-button"
+                    type="button"
+                    aria-label="Clear search"
+                >
+                    ✕
+                </button>
+            </div>
+
+            <button
+                id="search-button"
+                data-id="search-button"
+                type="button"
+                aria-label="Search Pokémon"
+            >
+                Search
+            </button>
+        </div>
+    </header>
+</div>
     
 
     <main id="content" data-id="content">
@@ -164,7 +197,11 @@
       </button>
     </dialog>
 
-    <div id="footer"></div>
+  <footer class="footer">
+    <br>
+    <br>
+    <span id="year" class="footer-span"></span>
+</footer>
 
    <script type="module" src="./script.js"></script>
   </body>
